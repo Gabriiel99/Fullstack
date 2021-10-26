@@ -12,7 +12,16 @@ exports.newUser = async (req, res, next) =>{
     }catch(error){
         console.log(error);
         next();
+    }  
+}
+
+//getting all the records in the database
+exports.getUser = async(req,res,next) =>{
+    try{
+        const users = await User.find({})
+        res.json(users)
+    }catch(error){
+        console.log(error);
+        next();
     }
-    
-    
 }

@@ -6,7 +6,12 @@ module.exports = function(){
     //Add new ones via POST
     router.post('/users',
         userControllers.newUser
-    )
+    );
+
+    //getting all the records in the database
+    router.get('/users',
+        userControllers.getUser
+    );
 
 
 
