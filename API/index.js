@@ -12,9 +12,8 @@ mongoose.connect('mongodb://localhost/budget',{
     useUnifiedTopology:true,
 });
 
-//enable body-parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //enable routing
 app.use('/', routes());
