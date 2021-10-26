@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const routes = require('./routes');
 //create the server
 const app = express();
 
@@ -10,6 +10,9 @@ mongoose.connect('mongodb://localhost/budget',{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 });
+
+//enable routing
+app.use('/', routes());
 
 //port and start the server
 app.listen(4000, () =>{
