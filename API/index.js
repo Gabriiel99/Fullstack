@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const bodyParser = require('body-parser');
 //create the server
 const app = express();
 
@@ -10,6 +11,10 @@ mongoose.connect('mongodb://localhost/budget',{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 });
+
+//enable body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 //enable routing
 app.use('/', routes());
