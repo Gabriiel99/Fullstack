@@ -13,7 +13,10 @@ module.exports = function(){
         userControllers.getUser
     );
 
-
+    //get a specific user ID
+    router.get('/users/:id',
+        userControllers.getUser
+    )
 
     return router;
 }

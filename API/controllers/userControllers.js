@@ -25,3 +25,14 @@ exports.getUser = async(req,res,next) =>{
         next();
     }
 }
+
+//get a specific user by their ID
+exports.getUser = async(req,res,next)=>{
+    try{
+        const users = await User.findById(req.params.id);
+        res.json(users);
+    }catch(error){
+        console.log(error);
+        next();
+    }
+}
