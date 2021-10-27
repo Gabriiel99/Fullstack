@@ -36,3 +36,16 @@ exports.getUser = async(req,res,next)=>{
         next();
     }
 }
+
+//update a record by its id
+exports.updateUser = async(req,res,next) =>{
+    try{
+        const users = await User.findOneAndUpdate({_id: req.params.id}, req.body, {
+            new: true
+        });
+        res.json(users);
+    }catch(error){
+        console.log(error);
+        next();
+    }
+}

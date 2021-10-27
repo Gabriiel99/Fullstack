@@ -16,7 +16,12 @@ module.exports = function(){
     //get a specific user ID
     router.get('/users/:id',
         userControllers.getUser
-    )
+    );
+
+    //update a record with a specific ID
+    router.put('/users/:id',
+       userControllers.updateUser 
+    );
 
     return router;
 }
