@@ -1,3 +1,4 @@
+const user = require('../models/user');
 const User = require('../models/user');
 
 //when creating a new budget
@@ -37,13 +38,24 @@ exports.getUser = async(req,res,next)=>{
     }
 }
 
-//update a record by its id
+//update a record by ID
 exports.updateUser = async(req,res,next) =>{
     try{
         const users = await User.findOneAndUpdate({_id: req.params.id}, req.body, {
             new: true
         });
         res.json(users);
+    }catch(error){
+        console.log(error);
+        next();
+    }
+}
+
+//delete user by ID
+exports.delUser = async(req,res,next) =>{
+    try{
+        await User.findOneAndDelete({_id: req.params.id});
+        res.json({message:'user was deleted'});
     }catch(error){
         console.log(error);
         next();

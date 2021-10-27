@@ -23,5 +23,10 @@ module.exports = function(){
        userControllers.updateUser 
     );
 
+    //delete patient by ID
+    router.delete('/users/:id',
+        userControllers.delUser
+    );
+
     return router;
 }
