@@ -7,6 +7,8 @@ import NewEntry from './components/Users';
 import Appointment from './components/Users';
 
 function App() {
+
+  console.log(procces.env.REACT_APP_BACKEND_URL);
   return (
     <Router>
       <Switch>
