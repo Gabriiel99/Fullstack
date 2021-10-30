@@ -23,7 +23,7 @@ const Users = ({budgets}) =>{
                             item-action flex-column align-items-start">
                                 <div className="d-flex w-100 justify-content-between mb-4">
                                     <h3 className="mb-3">{budget.name}</h3>
-                                    <small class="fecha-alta">
+                                    <small className="fecha-alta">
                                         {budget.date} - {budget-hour}
                                     </small>
                                 </div>

@@ -1,7 +1,10 @@
 import React, {Fragment} from "react";
 import {Link} from 'react-router-dom';
+import clientAxios from "../config/axios";
 
-const newEntry = () =>{
+import budgetAxios from '../config/axios'
+
+const newEntry = (props) =>{
 
     //generate State as object
     const [budget, saveBudget] = useState({
@@ -22,6 +25,18 @@ const newEntry = () =>{
     }
 
     //send a request to the API
+    const createNewIncome = e =>{
+        e.preventDefault();
+
+        //send the request by axios
+        clientAxios.post('/users', budget)
+            .then(respuesta =>{
+                console.log(respuesta);
+
+                //redirect
+                props.history.push('/');
+            })
+    }
 
 
 
@@ -35,7 +50,9 @@ const newEntry = () =>{
                     </Link>
                 </div>
                 <div className="col-md-8 mx-auto">
-                <form className="bg-white p-5 bordered">
+                <form 
+                onSubmit = {createNewIncome}
+                className="bg-white p-5 bordered">
         <div className="form-group">
             <label htmlFor="name">Name</label>
             <input 
