@@ -19,7 +19,8 @@ function App() {
     const consultAPI = () =>{
       clientAxios.get('/users')
         .then(respuesta => {
-          console.log(respuesta)
+          //put the result in state
+          saveBudget(respuesta.data)
         })
         .catch(error =>{
           console.log(error);
