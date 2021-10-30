@@ -2,6 +2,29 @@ import React, {Fragment} from "react";
 import {Link} from 'react-router-dom';
 
 const newEntry = () =>{
+
+    //generate State as object
+    const [budget, saveBudget] = useState({
+        concept:'',
+        amount:'',
+        name:'',
+        date:'',
+        hour:'',
+        type:''
+    });
+
+    //read the form data
+    const updateState = e =>{
+        saveBudget({
+            ...budget,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    //send a request to the API
+
+
+
     return (
         <Fragment>
             <h1 className="my-5">Create</h1>
@@ -21,6 +44,7 @@ const newEntry = () =>{
                 id="name" 
                 name="name" 
                 placeholder="name" 
+                onChange={updateState}
             />
         </div>
 
@@ -32,6 +56,7 @@ const newEntry = () =>{
                 id="amount" 
                 name="amount" 
                 placeholder="Amount" 
+                onChange={updateState}
             />
         </div>
 
@@ -43,6 +68,7 @@ const newEntry = () =>{
                 id="concept" 
                 name="concept" 
                 placeholder="Concept" 
+                onChange={updateState}
             />
         </div>
 
@@ -52,7 +78,8 @@ const newEntry = () =>{
                 type="date" 
                 className="form-control form-control-lg" 
                 id="date" 
-                name="date"  
+                name="date"
+                onChange={updateState}  
             />
         </div>
 
@@ -63,6 +90,7 @@ const newEntry = () =>{
                 className="form-control form-control-lg" 
                 id="hour" 
                 name="hour"  
+                onChange={updateState}
             />
         </div>
 
@@ -72,6 +100,7 @@ const newEntry = () =>{
                 className="form-control" 
                 name="type" 
                 rows="6"
+                onChange={updateState}
             ></textarea>
         </div>
 
