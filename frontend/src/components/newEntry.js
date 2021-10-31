@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import clientAxios from "../config/axios";
 
 import budgetAxios from '../config/axios'
@@ -32,6 +32,8 @@ const newEntry = (props) =>{
         clientAxios.post('/users', budget)
             .then(respuesta =>{
                 console.log(respuesta);
+
+                props.saveConsult(true);
 
                 //redirect
                 props.history.push('/');
@@ -130,4 +132,4 @@ const newEntry = (props) =>{
     )
 }
 
-export default newEntry;
+export default withRouter(newEntry);

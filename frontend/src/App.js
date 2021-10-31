@@ -14,20 +14,27 @@ function App() {
 
   //State de la app
   const [budget,saveBudget] = useState([]);
+  const [consult , saveConsult] = useState(true);
 
   useEffect( () =>{
-    const consultAPI = () =>{
-      clientAxios.get('/users')
-        .then(respuesta => {
-          //put the result in state
-          saveBudget(respuesta.data)
-        })
-        .catch(error =>{
-          console.log(error);
-        })
+    if(consult){
+      const consultAPI = () =>{
+        clientAxios.get('/users')
+          .then(respuesta => {
+            //put the result in state
+            saveBudget(respuesta.data);
+
+            //disable consult
+            saveConsult(false);
+
+          })
+          .catch(error =>{
+            console.log(error);
+          })
+      }
+      consultAPI();
     }
-    consultAPI();
-  }, [] );
+  }, [consult] );
 
   console.log(procces.env.REACT_APP_BACKEND_URL);
   return (
@@ -39,7 +46,7 @@ function App() {
         />
         <Route
           exact path="/new"
-          component = {NewEntry}
+          component = {() => <NewEntry saveConsult= {saveConsult} />}
         />
          <Route
           exact path="/appointment/:id"
