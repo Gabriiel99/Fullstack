@@ -57,6 +57,7 @@ function App() {
             return(
               <Appointment
               appointment = {appointment[0]}
+              saveConsult = {saveConsult}
               />
             )
           }} 

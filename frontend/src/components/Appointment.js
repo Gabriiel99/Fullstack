@@ -1,15 +1,31 @@
 import React, {Fragment} from "react";
 import { Link , withRouter} from "react-router-dom";
+import clientAxios from "../config/axios";
 
-const Appointment= (props, {appointment}) => {
+const Appointment= (props) => {
 
     if(!props.appointment){
-        props.history.push('/')
+        props.history.push('/');
+        return null;
     }
 
     //extract by props
-    const {appointment: {name, date, hour, type, amount, concept}} = props;
-    return null;
+    const {appointment: {_id , name, date, hour, type, amount, concept}} = props;
+    
+    //delete register
+    const deleteAppointment = id =>{
+        clientAxios.delete('/users/${id}')
+            .then(respuesta => {
+                props.saveConsult(true);
+                props.history.push('/');
+
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+
+           
+    }
 
     return(
         <Fragment>
@@ -45,6 +61,7 @@ const Appointment= (props, {appointment}) => {
                                     <button type="button"
                                         className="text-uppercase py-5
                                         font-weight-bold btn btn-danger col"
+                                        onClick= { ()=> deleteAppointment(id)}
                                     >
                                         Delete &times;
                                     </button>
