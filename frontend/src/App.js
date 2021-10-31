@@ -51,12 +51,12 @@ function App() {
          <Route
           exact path="/appointment/:id"
           render = {(props) =>{
-            const budget = budget.filter(budget => budget._id === props.match.params.id );
-            console.log(budget);
+            const appointment = appointment.filter(appointment => appointment._id === props.match.params.id );
+            
 
             return(
-              <Budget
-              budget = {budget[0]}
+              <Appointment
+              appointment = {appointment[0]}
               />
             )
           }} 
