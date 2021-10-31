@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import { Link , withRouter} from "react-router-dom";
 import clientAxios from "../config/axios";
+import Swal from 'sweetalert2';
 
 const Appointment= (props) => {
 
@@ -14,17 +15,37 @@ const Appointment= (props) => {
     
     //delete register
     const deleteAppointment = id =>{
-        clientAxios.delete('/users/${id}')
-            .then(respuesta => {
-                props.saveConsult(true);
-                props.history.push('/');
+        
 
-            })
-            .catch(error =>{
-                console.log(error)
-            })
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire(
+                     
+                  //delete alert  
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                  )
 
-           
+                  //removed from database
+                  clientAxios.delete('/users/${id}')
+                    .then(respuesta =>{
+                        props.saveConsult(true);
+                        props.history.push('/');
+                    })
+                    .catch(error =>{
+                        console.log(error);
+                    })
+                }
+              })      
     }
 
     return(
