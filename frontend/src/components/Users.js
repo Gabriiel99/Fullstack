@@ -18,8 +18,8 @@ const Users = ({budgets}) =>{
 
                 <div className="col-md-8 mx-auto">
                     <div className="list-group">
-                        {budgets.map(cita =>(
-                            <a key={budget._id} className="p-5 list-group-item list-group-
+                        {budgets.map(budget =>(
+                            <Link to={`/budget/${budget._id}`} key={budget._id} className="p-5 list-group-item list-group-
                             item-action flex-column align-items-start">
                                 <div className="d-flex w-100 justify-content-between mb-4">
                                     <h3 className="mb-3">{budget.name}</h3>
@@ -35,7 +35,7 @@ const Users = ({budgets}) =>{
                                     <p>Amount: {budget.amount} </p>
                                     <p>Concept: {budget.concept} </p>
                                 </div>    
-                            </a>
+                            </Link>
                             
                         ))}
                     </div>

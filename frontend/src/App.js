@@ -50,7 +50,17 @@ function App() {
         />
          <Route
           exact path="/appointment/:id"
-          component = {Appointment}
+          render = {(props) =>{
+            const budget = budget.filter(budget => budget._id === props.match.params.id );
+            console.log(budget);
+
+            return(
+              <Budget
+              budget = {budget[0]}
+              />
+            )
+          }} 
+          
         />
       </Switch>
     </Router>
